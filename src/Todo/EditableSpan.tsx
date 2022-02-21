@@ -5,26 +5,26 @@ type EditableSpanPropsType = {
     title: string
     changeTitle: (title: string) => void
 }
-export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
+export const EditableSpan = React.memo(({title, changeTitle}: EditableSpanPropsType) => {
     console.log('EditableSpan Rendered')
     const [editMode, setEditMode] = useState(false)
     const [value, setValue] = useState('')
 
     const activateEditMode = useCallback(() => {
         setEditMode(true)
-        setValue(props.title)
-    },[props.title])
+        setValue(title)
+    },[title])
 
     const activateViewMode = useCallback(() => {
         setEditMode(false)
-        props.changeTitle(value)
-    }, [props.changeTitle, value])
+        changeTitle(value)
+    }, [changeTitle, value])
 
     const onKeyPress = useCallback((e: KeyboardEvent<HTMLInputElement>) => {
         e.key === 'Enter' &&
         setEditMode(false)
-        props.changeTitle(value)
-    },[props.changeTitle, value])
+        changeTitle(value)
+    },[changeTitle, value])
 
     const onChangeHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
@@ -38,5 +38,5 @@ export const EditableSpan = React.memo((props: EditableSpanPropsType) => {
                      onKeyPress={onKeyPress}
                      onBlur={activateViewMode}
                      autoFocus/>
-        : <span onDoubleClick={activateEditMode}>{props.title}</span>
+        : <span onDoubleClick={activateEditMode}>{title}</span>
 })

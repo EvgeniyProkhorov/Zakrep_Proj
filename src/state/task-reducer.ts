@@ -10,20 +10,7 @@ type TasksActionType = ReturnType<typeof AddTaskAC>
     | ReturnType<typeof addTodoListAC>
 
 const initState: TasksObjType = {
-    // [todoList1]: [
-    //     {id: v1(), title: "HTML&CSS", isDone: true},
-    //     {id: v1(), title: "JavaScript", isDone: true},
-    //     {id: v1(), title: "React", isDone: false},
-    //     {id: v1(), title: "Angular", isDone: false},
-    //     {id: v1(), title: "Vue", isDone: false},
-    // ],
-    // [todoList2]: [
-    //     {id: v1(), title: "Milk", isDone: true},
-    //     {id: v1(), title: "Bread", isDone: true},
-    //     {id: v1(), title: "Coffee", isDone: false},
-    //     {id: v1(), title: "Juice", isDone: false},
-    //     {id: v1(), title: "React Book", isDone: false},
-    // ]
+
 }
 
 

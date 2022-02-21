@@ -126,8 +126,10 @@ function App() {
                         //     filteredTasks = tasks[tl.id].filter(t => !t.isDone)
                         // }
 
-                        return <Grid item>
-                            <Paper style={{padding: "10px"}}
+                        return <Grid key={tl.id}
+                            item>
+                            <Paper key={tl.id}
+                                style={{padding: "10px"}}
                                    elevation={5}>
                                 <ToDo key={tl.id}
                                       todoListId={tl.id}
@@ -140,7 +142,7 @@ function App() {
                                       // checkBoxSwitcher={checkBoxSwitcher}
                                       removeTodoList={removeTodoList}
                                       // changeTitle={changeTitle}
-                                      changeTodoListTitle={changeTodoListTitle}/>
+                                      changeTodoListTitleCallback={changeTodoListTitle}/>
                             </Paper>
                         </Grid>
                     })}

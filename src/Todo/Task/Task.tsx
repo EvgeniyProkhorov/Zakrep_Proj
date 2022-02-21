@@ -11,27 +11,36 @@ type TaskProps = {
     changeTaskTitle: (taskID: string, title: string) => void
     onClickRemoveTask: (taskID: string) => void
 }
-export const Task = React.memo((props: TaskProps) => {
+export const Task = React.memo(({
+                                    isDone,
+                                    title,
+                                    taskID,
+                                    checkboxOnChangeHandler,
+                                    changeTaskTitle,
+                                    onClickRemoveTask
+                                }: TaskProps) => {
     console.log('Tasks rendered')
     const onChangeCheckboxHandler = useCallback((e: ChangeEvent<HTMLInputElement>) => {
-        props.checkboxOnChangeHandler(props.taskID, e)
-    }, [props.checkboxOnChangeHandler])
+        checkboxOnChangeHandler(taskID, e)
+    }, [checkboxOnChangeHandler, taskID])
+
     const changeTitle = useCallback((title) => {
-        props.changeTaskTitle(props.taskID, title)
-    }, [props.changeTaskTitle, props.taskID])
+        changeTaskTitle(taskID, title)
+    }, [changeTaskTitle, taskID])
+
     const onClickHandler = useCallback(() => {
-        props.onClickRemoveTask(props.taskID)
-    }, [props.onClickRemoveTask, props.taskID])
+        onClickRemoveTask(taskID)
+    }, [onClickRemoveTask, taskID])
 
     return (
-        <div className={props.isDone ? "is-done" : ""}>
+        <div className={isDone ? "is-done" : ""}>
             {/*<input type="checkbox" checked={t.isDone}*/}
             {/*       onChange={(e) => checkboxOnChangeHandler(t.id,e)}/>*/}
             <Checkbox color={'success'}
                       size={'small'}
-                      checked={props.isDone}
+                      checked={isDone}
                       onChange={onChangeCheckboxHandler}/>
-            <EditableSpan title={props.title} changeTitle={changeTitle}/>
+            <EditableSpan title={title} changeTitle={changeTitle}/>
             <IconButton size={"small"} arial-label="delete" onClick={onClickHandler}>
                 <Delete fontSize={"small"}/>
             </IconButton>
